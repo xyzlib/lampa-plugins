@@ -83,7 +83,7 @@
   }
 
   function startPlugin() {
-    console.log(manifest.name, "Плагин запущен");
+    //console.log(manifest.name, "Плагин запущен");
     window.plugin__xyzlib_pr = true;
     if (window.appready) {
       initializePlugin();

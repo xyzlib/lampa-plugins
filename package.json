@@ -1,0 +1,23 @@
+{
+  "name": "xylib.lampa-plugins",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+  },
+  "devDependencies": {
+    "@eslint/css": "0.14.1",
+    "@eslint/js": "9.39.2",
+    "@eslint/json": "0.14.0",
+    "@eslint/markdown": "7.5.1",
+    "eslint": "9.39.2",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-import-x": "4.16.1",
+    "eslint-plugin-prettier": "5.5.5",
+    "eslint-plugin-unicorn": "62.0.0",
+    "globals": "17.0.0",
+    "prettier": "3.8.1"
+  },
+  "dependencies": {
+  }
+}

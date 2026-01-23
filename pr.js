@@ -1,12 +1,13 @@
 (function () {
   "use strict";
 
+  var name = "xyzlib.lampa-plugins.pr";
   var manifest = {
     //id: 'com.example.myplugin',
     version: "0.0.1",
     author: "@xyzlib",
-    name: "xyzlib->pr",
-    description: "xyzlib:pr description",
+    name: name,
+    description: name + " description",
     url: "https://xyzlib.github.io/lampa-plugins/pr.js",
     //icon: '',
   };
@@ -28,11 +29,11 @@
           // readyState 4 — запрос завершен
           if (this.readyState === 4) {
             try {
-              //console.log(`[lampa-pr]: 1 [XHR Response] от ${this._url}:`, this.responseText);
-              //console.log(`[lampa-pr]: 2 [XHR Response] от ${this._url}:`, this);
+              //console.log(manifest.name, `: 1 [XHR Response] от ${this._url}:`, this.responseText);
+              //console.log(manifest.name`, : 2 [XHR Response] от ${this._url}:`, this);
 
               var originalData = JSON.parse(this.responseText);
-              //console.log(`[lampa-pr]: 3 [XHR Response] originalData:`, originalData);
+              //console.log(manifest.name, `: 3 [XHR Response] originalData:`, originalData);
 
               if (originalData && originalData.user) {
                 originalData.user.premium = Date.now() + EXPIRE_PR;
@@ -49,7 +50,7 @@
                 configurable: true,
               });
             } catch (e) {
-              console.error("[lampa-pr] Error:", e);
+              console.error(manifest.name, e);
             }
           }
         });
@@ -67,7 +68,7 @@
     var updateplugins = false;
     var plugins = Lampa.Storage.get("plugins", "[]");
     plugins.forEach(function (plug) {
-      //console.log(manifest.name, "plug.url = " + plug.url);
+      //console.log(manifest.name, `plug.url = ${plug.url}`);
       if (plug.url.indexOf("xyzlib.github.io") >= 0) {
         updateplugins = true;
         plug.author = manifest.author;

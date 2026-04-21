@@ -22,13 +22,13 @@
 
     function _sr() {
       //console.log(manifest.name, "window.lampa_settings = ", window.lampa_settings);
-      console.log(manifest.name, `::: count = ${count}::: ${!!window.lampa_settings} && (${!!window.lampa_settings.dmca} && ${!!window.lampa_settings.lgbt} || ${(count >= maxCount)})`);
-      if (window.lampa_settings && (window.lampa_settings.dmca && window.lampa_settings.lgbt || (count >= maxCount))) {
+      console.log(manifest.name, `::: count = ${count}::: ${!!window.lampa_settings} && (${!!window.lampa_settings.dcma} && ${!!window.lampa_settings.lgbt} || ${(count >= maxCount)})`);
+      if (window.lampa_settings && (window.lampa_settings.dcma && window.lampa_settings.lgbt || (count >= maxCount))) {
         if (window.lampa_settings.disable_features) {
-          window.lampa_settings.disable_features.dmca = true;
+          window.lampa_settings.disable_features.dcma = true;
           window.lampa_settings.disable_features.lgbt = true;
         }
-        window.lampa_settings.dmca = false;
+        window.lampa_settings.dcma = false;
         window.lampa_settings.lgbt = false;
       } else if (count < maxCount) {
         count++;

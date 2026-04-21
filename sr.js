@@ -21,8 +21,8 @@
           window.lampa_settings.disable_features.dmca = true;
           window.lampa_settings.disable_features.lgbt = true;
         }
-        window.lampa_settings.dmca = [];
-        window.lampa_settings.lgbt = {};
+        window.lampa_settings.dmca = false;
+        window.lampa_settings.lgbt = false;
       }
     }, 5000);
   }
@@ -35,7 +35,8 @@
     plugins.forEach(function (plug) {
       console.log(manifest.name, "plug = ", plug);
       //console.log(manifest.name, `plug.url = ${plug.url}`);
-      if (plug.url.indexOf("xyzlib.github.io") >= 0) {
+      //if (plug.url.indexOf("xyzlib.github.io") >= 0) {
+      if (plug.url.indexOf(manifest.url) > -1) {
         updateplugins = true;
         plug.author = manifest.author;
         plug.name = manifest.name;

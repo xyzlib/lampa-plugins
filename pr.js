@@ -1,10 +1,11 @@
 (function () {
   "use strict";
 
-  var name = "xyzlib.lampa-plugins.pr";
+  var category = "xyzlib.lampa-plugins";
+  var name = category + ".pr";
   var manifest = {
     //id: 'com.example.myplugin',
-    version: "0.0.1",
+    version: "0.0.2",
     author: "@xyzlib",
     name: name,
     description: name + " description",
@@ -69,7 +70,7 @@
     var plugins = Lampa.Storage.get("plugins", "[]");
     plugins.forEach(function (plug) {
       //console.log(manifest.name, `plug.url = ${plug.url}`);
-      if (plug.url.indexOf("xyzlib.github.io") >= 0) {
+      if (plug.url.indexOf(manifest.url) > -1) {
         updateplugins = true;
         plug.author = manifest.author;
         plug.name = manifest.name;
@@ -85,7 +86,7 @@
 
   function startPlugin() {
     //console.log(manifest.name, "Плагин запущен");
-    window.plugin__xyzlib_pr = true;
+    window[category][name] = true;
     if (window.appready) {
       initializePlugin();
     } else {
@@ -97,7 +98,10 @@
     }
   }
 
-  if (!window.plugin__xyzlib_pr) {
+  if (!window[category]) {
+    window[category] = {};
+  }
+  if (!window[category][name]) {
     startPlugin();
   }
 })();

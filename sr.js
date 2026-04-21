@@ -2,10 +2,11 @@
 (function () {
   "use strict";
 
-  var name = "xyzlib.lampa-plugins.sr";
+  var category = "xyzlib.lampa-plugins";
+  var name = category + ".sr";
   var manifest = {
     //id: 'com.example.myplugin',
-    version: "0.0.1",
+    version: "0.0.2",
     author: "@xyzlib",
     name: name,
     description: name + " description",
@@ -14,17 +15,25 @@
   };
 
   function pluginXYZ() {
-    setTimeout(function() {
+    var count = 0;
+    var maxCount = 5;
+
+    _sr();
+
+    function _sr() {
       console.log(manifest.name, "window.lampa_settings = ", window.lampa_settings);
-      if (window.lampa_settings) {
+      if (window.lampa_settings && (window.lampa_settings.dmca && window.lampa_settings.lgbt || (count >= maxCount))) {
         if (window.lampa_settings.disable_features) {
           window.lampa_settings.disable_features.dmca = true;
           window.lampa_settings.disable_features.lgbt = true;
         }
         window.lampa_settings.dmca = false;
         window.lampa_settings.lgbt = false;
+      } else if (count < maxCount) {
+        count++;
+        setTimeout(_sr, 1000);
       }
-    }, 5000);
+    }
   }
 
   function initializePlugin() {
@@ -33,9 +42,7 @@
     var updateplugins = false;
     var plugins = Lampa.Storage.get("plugins", "[]");
     plugins.forEach(function (plug) {
-      console.log(manifest.name, "plug = ", plug);
       //console.log(manifest.name, `plug.url = ${plug.url}`);
-      //if (plug.url.indexOf("xyzlib.github.io") >= 0) {
       if (plug.url.indexOf(manifest.url) > -1) {
         updateplugins = true;
         plug.author = manifest.author;
@@ -52,7 +59,7 @@
 
   function startPlugin() {
     //console.log(manifest.name, "Плагин запущен");
-    window.xyzlib___plugins[name] = true;
+    window[category][name] = true;
     if (window.appready) {
       initializePlugin();
     } else {
@@ -64,10 +71,10 @@
     }
   }
 
-  if (!window.xyzlib___plugins) {
-    window.xyzlib___plugins = {};
+  if (!window[category]) {
+    window[category] = {};
   }
-  if (!window.xyzlib___plugins[name]) {
+  if (!window[category][name]) {
     startPlugin();
   }
 })();
